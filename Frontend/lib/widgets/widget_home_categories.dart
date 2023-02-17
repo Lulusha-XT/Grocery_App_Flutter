@@ -60,7 +60,15 @@ class HomeCategoriesWidget extends ConsumerWidget {
         itemBuilder: (context, index) {
           var data = categories[index];
           return GestureDetector(
-            onTap: (() {}),
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                "/products",
+                arguments: {
+                  "category_id": data.category_id,
+                  "category_name": data.category_name
+                },
+              );
+            },
             child: Padding(
               padding: EdgeInsets.all(8),
               child: Column(children: [

@@ -42,6 +42,7 @@ const getAllProducts = async (req: Request, res: Response, next: Function) => {
       category_id: req.query.category_id,
       pageSize: req.query.pageSize,
       page: req.query.page,
+      sort: req.query.sort,
     };
     const products = await productService.getAllProducts(params);
     return res.json(products);

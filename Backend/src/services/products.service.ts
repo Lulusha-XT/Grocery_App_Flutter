@@ -36,7 +36,7 @@ export const createProduct = async (
 };
 
 export const getAllProducts = async (
-  params: paramsProduct
+  params: any
 ): Promise<ProductDocument[]> => {
   try {
     const product_name = params.product_name;
@@ -55,7 +55,11 @@ export const getAllProducts = async (
     let perPage = Math.abs(params.pageSize) || MONGO_DB_CONFIG.PAGE_SIZE;
     let page = (Math.abs(params.page) || 1) - 1;
 
-    const products = await Product.find(condition)
+    const products = await Product.find(
+      condition,
+      " product_name product_description product_image product_short_description product_price product_sale_price product_SKU product_type stack_status category createdAt updatedAt "
+    )
+      .sort(params.sort)
       .populate({
         path: "category",
         select: "category_name category_description category_image",
