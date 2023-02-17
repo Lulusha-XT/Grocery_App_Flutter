@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocery_app/model/pagination.dart';
+import 'package:grocery_app/model/product_filter.dart';
 
 import '../model/category.dart';
 import '../provider/category_provider.dart';
@@ -39,7 +40,7 @@ class HomeCategoriesWidget extends ConsumerWidget {
 
     return categories.when(
       data: (list) {
-        return _buildCategoryList(list!);
+        return _buildCategoryList(list!, ref);
       },
       error: (_, __) => const Center(
         child: Text("ERR"),
@@ -48,7 +49,7 @@ class HomeCategoriesWidget extends ConsumerWidget {
     );
   }
 
-  Widget _buildCategoryList(List<Category> categories) {
+  Widget _buildCategoryList(List<Category> categories, WidgetRef ref) {
     return Container(
       height: 100,
       alignment: Alignment.centerLeft,
@@ -61,6 +62,16 @@ class HomeCategoriesWidget extends ConsumerWidget {
           var data = categories[index];
           return GestureDetector(
             onTap: () {
+              ProductFilterModel filterModel = ProductFilterModel(
+                  paginationModel: PaginationModel(page: 1, pageSize: 10),
+                  category_id: data.category_id);
+
+              ref
+                  .read(productFilterProvider.notifier)
+                  .setProductFilter(filterModel);
+
+              ref.read(productNotifierProvider.notifier).getProducts();
+
               Navigator.of(context).pushNamed(
                 "/products",
                 arguments: {

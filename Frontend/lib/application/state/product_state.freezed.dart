@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ProductState {
-  List<Product> get Products => throw _privateConstructorUsedError;
+  List<Product> get products => throw _privateConstructorUsedError;
   bool get hasNext => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
@@ -31,7 +31,7 @@ abstract class $ProductStateCopyWith<$Res> {
           ProductState value, $Res Function(ProductState) then) =
       _$ProductStateCopyWithImpl<$Res, ProductState>;
   @useResult
-  $Res call({List<Product> Products, bool hasNext, bool isLoading});
+  $Res call({List<Product> products, bool hasNext, bool isLoading});
 }
 
 /// @nodoc
@@ -47,14 +47,14 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? Products = null,
+    Object? products = null,
     Object? hasNext = null,
     Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
-      Products: null == Products
-          ? _value.Products
-          : Products // ignore: cast_nullable_to_non_nullable
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       hasNext: null == hasNext
           ? _value.hasNext
@@ -76,7 +76,7 @@ abstract class _$$_ProductStateCopyWith<$Res>
       __$$_ProductStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Product> Products, bool hasNext, bool isLoading});
+  $Res call({List<Product> products, bool hasNext, bool isLoading});
 }
 
 /// @nodoc
@@ -90,14 +90,14 @@ class __$$_ProductStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? Products = null,
+    Object? products = null,
     Object? hasNext = null,
     Object? isLoading = null,
   }) {
     return _then(_$_ProductState(
-      Products: null == Products
-          ? _value._Products
-          : Products // ignore: cast_nullable_to_non_nullable
+      products: null == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
               as List<Product>,
       hasNext: null == hasNext
           ? _value.hasNext
@@ -115,18 +115,18 @@ class __$$_ProductStateCopyWithImpl<$Res>
 
 class _$_ProductState implements _ProductState {
   const _$_ProductState(
-      {final List<Product> Products = const <Product>[],
+      {final List<Product> products = const <Product>[],
       this.hasNext = true,
       this.isLoading = false})
-      : _Products = Products;
+      : _products = products;
 
-  final List<Product> _Products;
+  final List<Product> _products;
   @override
   @JsonKey()
-  List<Product> get Products {
-    if (_Products is EqualUnmodifiableListView) return _Products;
+  List<Product> get products {
+    if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_Products);
+    return EqualUnmodifiableListView(_products);
   }
 
   @override
@@ -138,7 +138,7 @@ class _$_ProductState implements _ProductState {
 
   @override
   String toString() {
-    return 'ProductState(Products: $Products, hasNext: $hasNext, isLoading: $isLoading)';
+    return 'ProductState(products: $products, hasNext: $hasNext, isLoading: $isLoading)';
   }
 
   @override
@@ -146,7 +146,7 @@ class _$_ProductState implements _ProductState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_ProductState &&
-            const DeepCollectionEquality().equals(other._Products, _Products) &&
+            const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.hasNext, hasNext) || other.hasNext == hasNext) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading));
@@ -154,7 +154,7 @@ class _$_ProductState implements _ProductState {
 
   @override
   int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_Products), hasNext, isLoading);
+      const DeepCollectionEquality().hash(_products), hasNext, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -165,12 +165,12 @@ class _$_ProductState implements _ProductState {
 
 abstract class _ProductState implements ProductState {
   const factory _ProductState(
-      {final List<Product> Products,
+      {final List<Product> products,
       final bool hasNext,
       final bool isLoading}) = _$_ProductState;
 
   @override
-  List<Product> get Products;
+  List<Product> get products;
   @override
   bool get hasNext;
   @override
