@@ -57,4 +57,25 @@ class ApiService {
       return null;
     }
   }
+
+  static Future<bool> registerUser(
+      String full_name, String email, String password) async {
+    Map<String, String> requestHeader = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(Config.api_URL, Config.register_api);
+
+    var respons = await client.post(
+      url,
+      headers: requestHeader,
+      body: jsonEncode(
+        {"full_name": full_name, "email": email, "password": password},
+      ),
+    );
+    print(respons.body);
+    if (respons.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

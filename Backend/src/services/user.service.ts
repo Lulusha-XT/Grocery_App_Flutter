@@ -44,7 +44,7 @@ export const getAllUser = async (params: {
     const user = await User.find()
       .limit(perPage)
       .skip(page * perPage);
-    return { message: "Success", data: user };
+    return user;
   } catch (error) {
     throw new Error(`Users not found ${error}`);
   }
@@ -67,5 +67,16 @@ export const login = async (email: string, password: string) => {
     return null;
   } catch (error) {
     throw new Error(`Log in faild ${error}`);
+  }
+};
+
+export const deleteUser = async (id: string) => {
+  try {
+    // console.log(id);
+    const user = await User.findByIdAndDelete(id).lean();
+    // console.log(user);
+    return user;
+  } catch (error) {
+    throw new Error(`Delete faild ${error}`);
   }
 };

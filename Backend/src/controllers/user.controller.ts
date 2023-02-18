@@ -48,10 +48,21 @@ const userLogin = async (req: Request, res: Response, next: Function) => {
   }
 };
 
+const userDelete = async (req: Request, res: Response, next: Function) => {
+  try {
+    const id = req.params.id;
+    const delered = await userService.deleteUser(id);
+    res.json(delered);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const user_routes = (router: Router) => {
   router.route("/").get(getAllUser);
   router.route("/register").post(createUser);
   router.route("/login").post(userLogin);
+  router.route("/:id").delete(userDelete);
 };
 
 export default user_routes;
