@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:grocery_app/api/api_service.dart';
 import 'package:grocery_app/config.dart';
@@ -270,6 +271,8 @@ class _RegisterPageState extends State<RegisterPage> {
                         "Ok",
                         () {
                           Navigator.of(context).pop();
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              "/login", (route) => false);
                         },
                       );
                     } else {
@@ -297,7 +300,7 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Center(
             child: RichText(
-              text: const TextSpan(
+              text: TextSpan(
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
@@ -305,11 +308,17 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: <TextSpan>[
                   TextSpan(text: "Already have an acount?"),
                   TextSpan(
-                      text: "Sign In",
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontWeight: FontWeight.bold,
-                      )),
+                    text: "Sign In",
+                    style: TextStyle(
+                      color: Colors.deepOrange,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            "/login", (route) => false);
+                      },
+                  ),
                 ],
               ),
             ),

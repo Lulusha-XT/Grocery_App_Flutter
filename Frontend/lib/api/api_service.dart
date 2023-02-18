@@ -25,7 +25,7 @@ class ApiService {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       print(data);
-      return categoriesFromJson(data);
+      return categoriesFromJson(data["data"]);
     } else {
       return null;
     }
@@ -52,7 +52,7 @@ class ApiService {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       print(data);
-      return productFromJson(data);
+      return productFromJson(data["data"]);
     } else {
       return null;
     }
@@ -72,6 +72,26 @@ class ApiService {
       ),
     );
     print(respons.body);
+    if (respons.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static Future<bool> loginUser(String email, String password) async {
+    Map<String, String> requestHeader = {'Content-Type': 'application/json'};
+
+    var url = Uri.http(
+      Config.api_URL,
+      Config.login_api,
+    );
+    var respons = await client.post(
+      url,
+      headers: requestHeader,
+      body: jsonEncode({"email": email, "password": password}),
+    );
+
     if (respons.statusCode == 200) {
       return true;
     } else {

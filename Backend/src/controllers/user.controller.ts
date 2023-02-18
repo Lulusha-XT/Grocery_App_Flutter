@@ -51,8 +51,8 @@ const userLogin = async (req: Request, res: Response, next: Function) => {
 const userDelete = async (req: Request, res: Response, next: Function) => {
   try {
     const id = req.params.id;
-    const delered = await userService.deleteUser(id);
-    res.json(delered);
+    const deletedUser = await userService.deleteUser(id);
+    res.json(deletedUser);
   } catch (error) {
     return next(error);
   }
