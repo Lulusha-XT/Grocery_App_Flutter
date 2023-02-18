@@ -10,24 +10,25 @@ interface IUserDocument extends IUser, Document {}
 
 const userSchema = new Schema<IUserDocument>(
   {
-    full_name: { required: true, type: String },
-    email: { required: true, type: String },
-    password: { required: true, type: String },
+    full_name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
   },
 
   {
     toJSON: {
       transform: (doc, ret) => {
-        ret.user_id = ret.id.toString;
+        ret.user_id = ret._id.toString();
         delete ret._id;
-        delete ret._v;
+        delete ret.__v;
+        delete ret.password;
       },
     },
   }
 );
 
 const User: Model<IUserDocument> = mongoose.model<IUserDocument>(
-  "user",
+  "User",
   userSchema
 );
 

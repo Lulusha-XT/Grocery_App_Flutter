@@ -27,7 +27,7 @@ const createProduct = async (req: Request, res: Response, next: Function) => {
 
     const savedProduct = await productService.createProduct(product, Function);
     return res.json({
-      message: "Product successfully saved",
+      message: "Success",
       product: savedProduct,
     });
   } catch (error) {
@@ -45,7 +45,7 @@ const getAllProducts = async (req: Request, res: Response, next: Function) => {
       sort: req.query.sort,
     };
     const products = await productService.getAllProducts(params);
-    return res.json(products);
+    return res.json({ message: "Success", data: products });
   } catch (error) {
     return next(error);
   }
@@ -76,7 +76,7 @@ const updateProductById = async (
       category_description
     );
     return res.json({
-      message: "Successfully updated",
+      message: "Success",
       category: updatedCategory,
     });
   } catch (error) {

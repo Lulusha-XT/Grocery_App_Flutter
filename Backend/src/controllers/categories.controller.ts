@@ -15,7 +15,7 @@ const getAllCategories = async (
       page: parseInt(req.query.page as string),
     };
     const categories = await categoryService.getAllCategories(params);
-    return res.json(categories);
+    return res.json({ message: "Success", data: categories });
   } catch (error) {
     return next(error);
   }
@@ -26,7 +26,7 @@ const getCategoryById = async (req: Request, res: Response, next: Function) => {
     console.log(req.params.id);
     const category = await categoryService.getCategoryById(req.params.id);
     console.log(category);
-    return res.json(category);
+    return res.json({ message: "Success", data: category });
   } catch (error) {
     return next(error);
   }
@@ -48,7 +48,7 @@ const createCategory = async (req: Request, res: Response, next: Function) => {
 
     const savedCategory = await categoryService.createCategory(model);
     return res.json({
-      message: "Category successfully saved",
+      message: "Success",
       category: savedCategory,
     });
   } catch (error) {
@@ -70,7 +70,7 @@ const updateCategoryById = async (
       category_description
     );
     return res.json({
-      message: "Successfully updated",
+      message: "Success",
       category: updatedCategory,
     });
   } catch (error) {

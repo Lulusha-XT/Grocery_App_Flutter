@@ -1,6 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:grocery_app/application/notifier/product_filter_notifier.dart';
-import 'package:grocery_app/application/notifier/product_notifier.dart';
 import 'package:grocery_app/application/state/product_state.dart';
 import 'package:grocery_app/model/product.dart';
 import 'package:grocery_app/model/product_filter.dart';
@@ -8,6 +6,8 @@ import 'package:grocery_app/model/product_filter.dart';
 import '../api/api_service.dart';
 import '../model/category.dart';
 import '../model/pagination.dart';
+import 'notifier/product_filter_notifier.dart';
+import 'notifier/product_notifier.dart';
 
 final categoriesProvider =
     FutureProvider.family<List<Category>?, PaginationModel>(
