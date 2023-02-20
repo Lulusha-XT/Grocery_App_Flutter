@@ -1,5 +1,5 @@
-import mongoose, { Model, mongo, Schema } from "mongoose";
-import { Products } from "../types/product.type";
+import mongoose, { Model, Document, Schema } from "mongoose";
+
 interface ISliderType {
   slider_name: string;
   slider_description: string;
@@ -9,17 +9,17 @@ interface ISliderType {
 
 interface SliderDocument extends Document, ISliderType {}
 
-const productScheam = new Schema(
+const sliderScheam = new Schema<SliderDocument>(
   {
-    slider_name: { requireed: true, type: String },
+    slider_name: { required: true, unique: true, type: String },
     slider_description: { type: String },
     slider_url: { type: String },
-    slider_image: { required: true, unique: true, type: String },
+    slider_image: { required: true, type: String },
   },
 
   {
     toJSON: {
-      transform: function (doc, ret) {
+      transform: (doc, ret) => {
         ret.slider_id = ret._id.toString();
         delete ret._id;
         delete ret.__v;
@@ -29,7 +29,7 @@ const productScheam = new Schema(
 );
 
 const Slider: Model<SliderDocument> = mongoose.model<SliderDocument>(
-  "Product",
-  productScheam
+  "Slider",
+  sliderScheam
 );
 export { Slider, SliderDocument, ISliderType };

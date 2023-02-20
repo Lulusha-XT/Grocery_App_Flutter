@@ -2,9 +2,8 @@ import express, { Request, Response, Router } from "express";
 
 import { ISliderType } from "../models/slider.model";
 import * as sliderService from "../services/slider.service";
-import upload from "../middleware/category.upload";
-import router from "../routes";
-import uploadProduct from "../middleware/product.upload";
+import { SliderParams } from "../types/slider.type";
+import uploadslider from "../middleware/slider.upload";
 
 const createSlider = async (req: Request, res: Response, next: Function) => {
   try {
@@ -47,7 +46,7 @@ const getAllSliders = async (req: Request, res: Response, next: Function) => {
 
 const getSlidersById = async (req: Request, res: Response, next: Function) => {
   try {
-    const slider = await sliderService.getAllSliders(req.body.id);
+    const slider = await sliderService.getSliderById(req.params.id);
     return res.json({
       message: "succes",
       data: slider,
@@ -63,7 +62,14 @@ const updateSliderById = async (
   next: Function
 ) => {
   try {
-    const slider = await sliderService.getAllSliders(req.body.id);
+    const path =
+      req.file?.path != undefined ? req.file.path.replace(/\\/g, "/") : "";
+    const slider = await sliderService.updateSlider(
+      req.params.id,
+      req.body.slider_name,
+      req.body.slider_description,
+      path
+    );
     return res.json({
       message: "succes",
       data: slider,
@@ -79,7 +85,7 @@ const deleteSliderById = async (
   next: Function
 ) => {
   try {
-    const slider = await sliderService.getAllSliders(req.body.id);
+    const slider = await sliderService.delleteSlider(req.params.id);
     return res.json({
       message: "succes",
       data: slider,
@@ -92,13 +98,13 @@ const deleteSliderById = async (
 const slider_router = (router: Router) => {
   router
     .route("/")
-    .post(uploadProduct.single("image"), createSlider)
+    .post(uploadslider.single("image"), createSlider)
     .get(getAllSliders);
   router
     .route("/:id")
     .get(getSlidersById)
     .delete(deleteSliderById)
-    .put(updateSliderById);
+    .put(uploadslider.single("image"), updateSliderById);
 };
 
 export default slider_router;

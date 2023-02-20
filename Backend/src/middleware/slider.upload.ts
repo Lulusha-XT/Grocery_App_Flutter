@@ -6,26 +6,31 @@ import { v4 } from "uuid";
 
 const storage = multer.diskStorage({
   destination: "./uploads/sliders",
-  filename: (req, file) => {
-    const modifiedPath = v4() + path.extname(file.originalname);
-    return modifiedPath;
+  filename: (req, file, cb) => {
+    cb(null, v4() + path.extname(file.originalname));
   },
 });
 
-const fileFilter = (req: Request, file: Express.Multer.File): boolean => {
+const fileFilter = (
+  req: Request,
+  file: Express.Multer.File,
+  callback: Function
+): void => {
   const acceptableExt = [".png", ".jpg", ".jpeg"];
   if (!acceptableExt.includes(path.extname(file.originalname))) {
-    throw new Error("Only .png, .jpg and .jpeg format allowed!");
+    return callback(
+      new Error("Only .png, .jpg and .jpeg format allowed!"),
+      false
+    );
   }
-
   const fileSize: number = parseInt(req.headers["content-length"] as string);
-  if (fileSize > 1048567) {
-    throw new Error("File Size Big");
+
+  if (fileSize > 1048576) {
+    return callback(new Error("File Size Big"), false);
   }
 
-  return true;
+  callback(null, true);
 };
-
 const uploadslider = multer({
   storage: storage,
   fileFilter: fileFilter,
