@@ -3,7 +3,7 @@ import { User, IUserDocument, IUser } from "../models/user.model";
 import bcrypt from "bcrypt";
 import * as auth from "../middleware/auth";
 
-export const creatUser = async (user: IUser): Promise<String> => {
+export const creatUser = async (user: IUser): Promise<IUserDocument> => {
   try {
     if (!user.email) {
       throw new Error("User not found");
@@ -24,9 +24,11 @@ export const creatUser = async (user: IUser): Promise<String> => {
       ...user,
       password: hash,
     });
-    await newUser.save();
     const token = auth.generateAccessToken(newUser.toJSON());
-    return token;
+    newUser.token = token;
+    await newUser.save();
+
+    return newUser as IUserDocument;
   } catch (error) {
     throw new Error(`Could not creat user ${error}`);
   }
@@ -61,7 +63,7 @@ export const login = async (email: string, password: string) => {
       ))
     ) {
       const token = auth.generateAccessToken(user);
-      return token;
+      return user;
     }
     // console.log(passwordMatch);
     return null;

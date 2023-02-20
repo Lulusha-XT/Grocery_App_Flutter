@@ -143,7 +143,7 @@ class _ProductList extends ConsumerWidget {
         if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent) {
           final producstViewModel = ref.read(productNotifierProvider.notifier);
-          final ProductState = ref.watch(productNotifierProvider);
+          final productState = ref.watch(productNotifierProvider);
 
           if (productState.hasNext) {
             producstViewModel.getProducts();
@@ -152,7 +152,6 @@ class _ProductList extends ConsumerWidget {
       },
     );
 
-    print(productState);
     if (productState.products.isEmpty) {
       if (!productState.hasNext && !productState.isLoading) {
         return const Center(

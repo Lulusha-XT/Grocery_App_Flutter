@@ -5,7 +5,10 @@ import 'package:grocery_app/config.dart';
 import 'package:grocery_app/model/category.dart';
 import 'package:grocery_app/model/product.dart';
 import 'package:grocery_app/model/product_filter.dart';
+import 'package:grocery_app/utils/shared_service.dart';
 import 'package:http/http.dart' as http;
+
+import '../model/login_response_model.dart';
 
 final apiService = Provider((ref) => ApiService());
 
@@ -93,6 +96,7 @@ class ApiService {
     );
 
     if (respons.statusCode == 200) {
+      await SharedService.setLoginDetails(loginResponseJson(respons.body));
       return true;
     } else {
       return false;
