@@ -113,7 +113,7 @@ export const deleteProductById = async (id: string): Promise<IProductType> => {
       const exist = await fs.pathExists(path.resolve(product.product_image));
       if (exist) await fs.unlink(path.resolve(product.product_image));
     }
-    if (!product) throw "Not Found CategoryWith id" + id;
+    if (!product) throw "Not Found Category With id" + id;
     else return product;
   } catch (error: any) {
     throw new Error(`Error deleting category with id ${id}: ${error.message}`);

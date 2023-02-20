@@ -18,7 +18,7 @@ export const getAllCategories = async (
   // }
   try {
     const category_name = params.category_name;
-    var condition = category_name
+    let condition = category_name
       ? {
           category_name: { $regex: new RegExp(category_name), $options: "i" },
         }
