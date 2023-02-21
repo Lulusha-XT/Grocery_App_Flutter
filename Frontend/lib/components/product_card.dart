@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:grocery_app/model/product.dart';
-
-import '../config.dart';
+import "package:grocery_app/config.dart";
 
 class ProductCard extends StatelessWidget {
   final Product? model;
@@ -23,24 +19,25 @@ class ProductCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Visibility(
-                  visible: model!.calculateDiscount > 0,
-                  child: Align(
-                    alignment: Alignment.topLeft,
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: const BoxDecoration(
-                        color: Colors.green,
-                      ),
-                      child: Text(
-                        "${model!.calculateDiscount}% OFF",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
+                visible: model!.calculateDiscount > 0,
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: const BoxDecoration(
+                      color: Colors.green,
+                    ),
+                    child: Text(
+                      "${model!.calculateDiscount}% OFF",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
-                  )),
+                  ),
+                ),
+              ),
               SizedBox(
                 child: Image.network(
                   model!.fullImagePath,
