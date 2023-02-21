@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocery_app/model/pagination.dart';
 import 'package:grocery_app/model/product_filter.dart';
-
-import '../model/category.dart';
-import '../provider/category_provider.dart';
-import '../providers.dart';
+import 'package:grocery_app/model/category.dart';
+import 'package:grocery_app/providers.dart';
 
 class HomeCategoriesWidget extends ConsumerWidget {
   const HomeCategoriesWidget({super.key});
@@ -43,7 +41,7 @@ class HomeCategoriesWidget extends ConsumerWidget {
         return _buildCategoryList(list!, ref);
       },
       error: (_, __) => const Center(
-        child: Text("ERR"),
+        child: Text("Error"),
       ),
       loading: () => const Center(child: CircularProgressIndicator()),
     );
@@ -63,8 +61,9 @@ class HomeCategoriesWidget extends ConsumerWidget {
           return GestureDetector(
             onTap: () {
               ProductFilterModel filterModel = ProductFilterModel(
-                  paginationModel: PaginationModel(page: 1, pageSize: 10),
-                  category_id: data.category_id);
+                paginationModel: PaginationModel(page: 1, pageSize: 10),
+                category_id: data.category_id,
+              );
 
               ref
                   .read(productFilterProvider.notifier)
@@ -82,30 +81,34 @@ class HomeCategoriesWidget extends ConsumerWidget {
             },
             child: Padding(
               padding: EdgeInsets.all(8),
-              child: Column(children: [
-                Container(
-                  margin: EdgeInsets.all(8),
-                  width: 50,
-                  height: 50,
-                  alignment: Alignment.center,
-                  child: Image.network(data.fullImagePath, height: 50),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      data.category_name,
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.bold),
-                    ),
-                    const Icon(
-                      Icons.keyboard_arrow_right,
-                      size: 13,
-                    )
-                  ],
-                )
-              ]),
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(8),
+                    width: 50,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: Image.network(data.fullImagePath, height: 50),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        data.category_name,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Icon(
+                        Icons.keyboard_arrow_right,
+                        size: 13,
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           );
         },
