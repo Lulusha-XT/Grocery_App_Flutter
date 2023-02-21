@@ -34,10 +34,14 @@ const productScheam = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
+    relatedProduct: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "RelatedProduct",
+    },
   },
   {
     toJSON: {
-      transform: function (doc, ret) {
+      transform: (doc, ret) => {
         ret.product_id = ret._id.toString();
         delete ret._id;
         delete ret.__v;
