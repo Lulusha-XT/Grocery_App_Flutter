@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocery_app/application/state/product_state.dart';
 import 'package:grocery_app/model/product.dart';
