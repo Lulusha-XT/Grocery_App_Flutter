@@ -63,7 +63,6 @@ class _ProductFilter extends ConsumerWidget {
   ];
 
   _ProductFilter({
-    Key? key,
     this.category_name,
     this.category_id,
   });
