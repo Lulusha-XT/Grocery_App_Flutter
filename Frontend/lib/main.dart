@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:grocery_app/pages/dashboard_page.dart';
 import 'package:grocery_app/pages/home_page.dart';
 import 'package:grocery_app/pages/login_page.dart';
 import 'package:grocery_app/pages/products_page.dart';
@@ -12,7 +13,7 @@ void main() async {
   bool result = await SharedService.isLoggedIn();
 
   if (result) {
-    _defaultHome = const HomePage();
+    _defaultHome = const DashboardPage();
   }
   runApp(const ProviderScope(child: MyApp()));
 }
