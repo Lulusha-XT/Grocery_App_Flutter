@@ -1,14 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:grocery_app/application/state/product_state.dart';
 import 'package:grocery_app/components/product_card.dart';
 import 'package:grocery_app/model/pagination.dart';
-import 'package:grocery_app/model/product.dart';
 import 'package:grocery_app/model/product_filter.dart';
 import 'package:grocery_app/model/product_sort.dart';
 import 'package:grocery_app/providers.dart';
