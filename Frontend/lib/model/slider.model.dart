@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:grocery_app/config.dart';
 part 'slider.model.freezed.dart';

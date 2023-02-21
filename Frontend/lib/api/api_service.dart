@@ -105,10 +105,6 @@ class ApiService {
 
   Future<List<SliderModel>?> getSliders(page, pageSize) async {
     Map<String, String> requestHeader = {"Content-Type": "application/json"};
-    Map<String, String> queryString = {
-      'page': page.toString(),
-      'pag_size': pageSize.toString()
-    };
 
     var url = Uri.http(
       Config.api_URL,
