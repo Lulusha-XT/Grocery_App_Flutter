@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:grocery_app/model/product.dart';
+
 import 'package:grocery_app/widgets/widget_home_categories.dart';
 import 'package:grocery_app/widgets/widget_home_product.dart';
+
+import '../widgets/widget_home_slider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,6 +14,7 @@ class HomePage extends StatelessWidget {
       body: Container(
         child: ListView(
           children: const [
+            HomeSliderWidget(),
             HomeCategoriesWidget(),
             HomeProductsWidget(),
             // ProductCard(model: model),

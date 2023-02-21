@@ -9,6 +9,7 @@ import 'package:grocery_app/utils/shared_service.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/login_response_model.dart';
+import '../model/slider.model.dart';
 
 final apiService = Provider((ref) => ApiService());
 
@@ -100,6 +101,29 @@ class ApiService {
       return true;
     } else {
       return false;
+    }
+  }
+
+  Future<List<SliderModel>?> getSliders(page, pageSize) async {
+    Map<String, String> requestHeader = {"Content-Type": "application/json"};
+    Map<String, String> queryString = {
+      'page': page.toString(),
+      'pag_size': pageSize.toString()
+    };
+
+    var url = Uri.http(
+      Config.api_URL,
+      Config.slider_api,
+    );
+
+    var response = await client.get(url, headers: requestHeader);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body);
+
+      return slidersFromJson(data["data"]);
+    } else {
+      return null;
     }
   }
 }

@@ -9,9 +9,9 @@ import 'package:grocery_app/utils/shared_service.dart';
 Widget _defaultHome = const LoginPage();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  bool _result = await SharedService.isLoggedIn();
+  bool result = await SharedService.isLoggedIn();
 
-  if (_result) {
+  if (result) {
     _defaultHome = const HomePage();
   }
   runApp(const ProviderScope(child: MyApp()));
