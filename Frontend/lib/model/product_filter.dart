@@ -5,8 +5,10 @@ part 'product_filter.freezed.dart';
 
 @freezed
 abstract class ProductFilterModel with _$ProductFilterModel {
-  factory ProductFilterModel(
-      {required PaginationModel paginationModel,
-      String? category_id,
-      String? sort_by}) = _productFilterModel;
+  factory ProductFilterModel({
+    required PaginationModel paginationModel,
+    String? category_id,
+    String? sort_by,
+    List<String>? product_ids,
+  }) = _productFilterModel;
 }

@@ -47,3 +47,18 @@ final SliderProvider =
   final sliderRepo = ref.watch(apiService);
   return sliderRepo.getSliders(paginationModel.page, paginationModel.pageSize);
 });
+
+final ProductDetailsProvider = FutureProvider.family<Product?, String>(
+  (ref, product_id) {
+    final apiRepository = ref.watch(apiService);
+    return apiRepository.getProductDetails(product_id);
+  },
+);
+
+final relatedProductsProvider =
+    FutureProvider.family<List<Product>?, ProductFilterModel>(
+  (ref, productFilterModel) {
+    final apiRepository = ref.watch(apiService);
+    return apiRepository.getProuduct(productFilterModel);
+  },
+);

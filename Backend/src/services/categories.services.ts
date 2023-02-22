@@ -8,9 +8,10 @@ import path from "path";
 import fs from "fs-extra";
 import { Categorys, paramsCategory } from "../types/category.types";
 import MONGO_DB_CONFIG from "../config/app.config";
+import { FilterQuery } from "mongoose";
 
 export const getAllCategories = async (
-  params: paramsCategory
+  params: any
 ): Promise<ICategoryType[]> => {
   // try {
   //   const categories = await Category.find().lean();
@@ -18,7 +19,14 @@ export const getAllCategories = async (
   // }
   try {
     const category_name = params.category_name;
-    let condition = category_name
+    const category_id = params.category_id;
+    let condition: FilterQuery<any> = {};
+
+    // if (category_id) {
+    //   condition["category_id"] = category_id;
+    // }
+    condition = category_id ? category_id : {};
+    condition = category_name
       ? {
           category_name: { $regex: new RegExp(category_name), $options: "i" },
         }

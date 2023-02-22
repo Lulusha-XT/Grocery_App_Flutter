@@ -41,21 +41,32 @@ export const getAllProducts = async (
   try {
     const product_name = params.product_name;
     const category_id = params.category_id;
+    const product_ids = params.product_ids;
     let condition: FilterQuery<IProductType> = {};
     if (product_name) {
       condition["product_name"] = {
         $regex: new RegExp(product_name),
-        $option: "i",
+        $options: "i",
       };
     }
     if (category_id) {
       condition["category_id"] = category_id;
     }
 
+    if (product_ids) {
+      console.log(typeof product_ids);
+
+      console.log(product_ids);
+      condition["product_ids"] = {
+        $in: product_ids.split(","),
+      };
+      console.log(condition);
+    }
+
     let perPage = Math.abs(params.pageSize) || MONGO_DB_CONFIG.PAGE_SIZE;
     let page = (Math.abs(params.page) || 1) - 1;
 
-    const products = await Product.find(
+    const products: unknown | ProductDocument = await Product.find(
       condition,
       " product_name product_description product_image product_short_description product_price product_sale_price product_SKU product_type stack_status category createdAt updatedAt "
     )
@@ -65,10 +76,22 @@ export const getAllProducts = async (
         select: "category_name category_description category_image",
         model: "Category",
       })
+      .populate("relatedProduct", "relatedProduct")
       .limit(perPage)
       .skip(perPage * page);
 
-    return products;
+    let productss = (Array.isArray(products) ? products : [products]).map(
+      (p) => {
+        if (p.relatedProduct.length > 0) {
+          p.relatedProduct = p.relatedProduct.map(
+            (x: { relatedProduct: any }) => x.relatedProduct
+          );
+        }
+        return p;
+      }
+    );
+
+    return productss;
   } catch (error: any) {
     throw new Error(`Error retriving products: ${error.message}`);
   }

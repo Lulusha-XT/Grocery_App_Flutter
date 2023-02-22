@@ -1,6 +1,7 @@
 import mongoose, { Model, Schema, Document } from "mongoose";
 
 interface IProductType {
+  product_ids: string;
   product_name: string;
   product_description: string;
   product_image: string;
@@ -34,10 +35,12 @@ const productScheam = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
     },
-    relatedProduct: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "RelatedProduct",
-    },
+    relatedProduct: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "RelatedProduct",
+      },
+    ],
   },
   {
     toJSON: {

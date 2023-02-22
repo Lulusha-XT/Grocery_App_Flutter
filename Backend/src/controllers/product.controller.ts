@@ -13,6 +13,7 @@ const createProduct = async (req: Request, res: Response, next: Function) => {
     const path =
       req.file?.path != undefined ? req.file.path.replace(/\\/g, "/") : "";
     const product: IProductType = {
+      product_ids: req.query.product_ides as string,
       product_name: req.body.product_name,
       product_description: req.body.product_description,
       product_image: path,
@@ -38,11 +39,12 @@ const createProduct = async (req: Request, res: Response, next: Function) => {
 const getAllProducts = async (req: Request, res: Response, next: Function) => {
   try {
     const params: any = {
-      product_name: req.query.product_name,
-      category_id: req.query.category_id,
-      pageSize: req.query.pageSize,
-      page: req.query.page,
-      sort: req.query.sort,
+      product_ids: req.query.product_ids as string,
+      product_name: req.query.product_name as string,
+      category_id: req.query.category_id as string,
+      pageSize: req.query.pageSize as string,
+      page: req.query.page as string,
+      sort: req.query.sort as string,
     };
     const products = await productService.getAllProducts(params);
     return res.json({ message: "Success", data: products });

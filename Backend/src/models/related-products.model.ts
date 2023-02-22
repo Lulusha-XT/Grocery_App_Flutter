@@ -30,7 +30,7 @@ const relatedProductScema = new Schema(
   }
 );
 
-const RelatedProduct: Model<RelatedProductDocument> =
+const RelatedProductModel: Model<RelatedProductDocument> =
   mongoose.model<RelatedProductDocument>("RelatedProduct", relatedProductScema);
 
-export { IRelatedProduct, RelatedProductDocument, RelatedProduct };
+export { IRelatedProduct, RelatedProductDocument, RelatedProductModel };

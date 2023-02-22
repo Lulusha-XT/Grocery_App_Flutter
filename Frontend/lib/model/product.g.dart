@@ -18,6 +18,9 @@ _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
       product_type: json['product_type'] as String,
       stack_status: json['stack_status'] as String,
       product_id: json['product_id'] as String,
+      product_ids: (json['product_ids'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
@@ -33,4 +36,5 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
       'product_type': instance.product_type,
       'stack_status': instance.stack_status,
       'product_id': instance.product_id,
+      'product_ids': instance.product_ids,
     };

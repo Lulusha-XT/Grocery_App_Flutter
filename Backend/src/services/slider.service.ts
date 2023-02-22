@@ -23,7 +23,7 @@ export const createSlider = async (
 
 export const getAllSliders = async (
   params: SliderParams
-): Promise<SliderDocument> => {
+): Promise<SliderDocument[]> => {
   try {
     const slider_name = params.slider_name;
     let condition = slider_name
@@ -37,7 +37,7 @@ export const getAllSliders = async (
       .limit(perPage)
       .skip(perPage * page);
 
-    return sliders as unknown as SliderDocument;
+    return sliders;
   } catch (error: any) {
     throw new Error(`Error retriving sliders ${error.message}`);
   }
@@ -77,7 +77,7 @@ export const updateSlider = async (
       { new: true }
     ).lean();
     if (!updateSlider) throw "Not found slider with id " + id;
-    else return updateSlider as unknown as SliderDocument;
+    else return updateSlider as SliderDocument;
   } catch (error: any) {
     throw new Error(`Error updating slider with id ${id}: ${error.message}`);
   }

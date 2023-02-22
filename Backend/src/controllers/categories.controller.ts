@@ -9,10 +9,11 @@ const getAllCategories = async (
   next: Function
 ) => {
   try {
-    const params: paramsCategory = {
+    const params: any = {
       category_name: req.query.category_name as string,
       pageSize: parseInt(req.query.pageSize as string),
       page: parseInt(req.query.page as string),
+      category_id: req.query.category_id as string,
     };
     const categories = await categoryService.getAllCategories(params);
     return res.json({ message: "Success", data: categories });
