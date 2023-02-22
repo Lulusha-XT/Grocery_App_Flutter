@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ColExpand extends StatefulWidget {
   const ColExpand({this.title, this.content, Key? key}) : super(key: key);

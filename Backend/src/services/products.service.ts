@@ -120,7 +120,10 @@ export const updateProductById = async (
 
 export const getProductById = async (id: string): Promise<IProductType> => {
   try {
-    const product = await Product.findById(id).lean();
+    const product = await Product.findById(id).populate({
+      path: "category",
+      select: "category_name category_description category_image",
+    });
     if (!product) throw "Not Found Category With id" + id;
     else return product;
   } catch (err: any) {

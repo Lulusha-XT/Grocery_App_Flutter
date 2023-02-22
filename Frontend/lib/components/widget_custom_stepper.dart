@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CustomStepper extends StatefulWidget {
-  const CustomStepper(
+  CustomStepper(
       {required this.lowerLimit,
       required this.upperLimit,
       required this.stepValue,
@@ -10,9 +10,9 @@ class CustomStepper extends StatefulWidget {
       required this.onChenged,
       Key? key})
       : super(key: key);
-  final int? lowerLimit;
-  final int? upperLimit;
-  final int? stepValue;
+  final int lowerLimit;
+  final int upperLimit;
+  final int stepValue;
   final double iconSize;
 
   int value;
@@ -46,10 +46,44 @@ class _CustomStepperState extends State<CustomStepper> {
             ),
             onTap: () {
               setState(() {
-                widget.value = widget.value == widget.lowerLimit ? widget.lowerLimit : widget.value - widget.stepValue
+                widget.value = widget.value == widget.lowerLimit
+                    ? widget.lowerLimit
+                    : widget.value -= widget.stepValue;
+
+                widget.onChenged(widget.value);
               });
             },
-          )
+          ),
+          SizedBox(
+            width: widget.iconSize,
+            child: Text(
+              widget.value.toString(),
+              style: TextStyle(
+                fontSize: widget.iconSize * 0.7,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          GestureDetector(
+            child: Padding(
+              padding: EdgeInsets.only(right: 2),
+              child: Icon(
+                Icons.add,
+                color: Colors.black,
+                size: 20,
+              ),
+            ),
+            onTap: () {
+              setState(() {
+                widget.value = widget.value == widget.upperLimit
+                    ? widget.upperLimit
+                    : widget.value += widget.stepValue;
+
+                widget.onChenged(widget.value);
+              });
+            },
+          ),
         ],
       ),
     );

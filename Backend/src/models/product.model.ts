@@ -49,6 +49,7 @@ const productScheam = new Schema(
         delete ret._id;
         delete ret.__v;
       },
+      strictPopulate: false,
     },
   }
 );

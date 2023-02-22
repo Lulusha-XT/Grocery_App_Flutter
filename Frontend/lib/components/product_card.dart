@@ -47,6 +47,10 @@ class ProductCard extends StatelessWidget {
                   height: 100,
                   width: MediaQuery.of(context).size.width,
                 ),
+                onTap: () {
+                  Navigator.of(context).pushNamed("/product-details",
+                      arguments: {'product_id': model!.product_id});
+                },
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8, left: 10),

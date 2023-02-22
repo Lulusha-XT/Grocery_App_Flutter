@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grocery_app/pages/dashboard_page.dart';
-import 'package:grocery_app/pages/home_page.dart';
 import 'package:grocery_app/pages/login_page.dart';
 import 'package:grocery_app/pages/product_details_page.dart';
 import 'package:grocery_app/pages/products_page.dart';
