@@ -1,4 +1,5 @@
 import mongoose, { Model, Schema, Document } from "mongoose";
+import { IRelatedProduct } from "./related-products.model";
 
 interface IProductType {
   product_ids: string;
@@ -16,7 +17,9 @@ interface IProductType {
   category: mongoose.Schema.Types.ObjectId;
 }
 
-interface ProductDocument extends Document, IProductType {}
+interface ProductDocument extends Document, IProductType {
+  relatedProduct: IRelatedProduct[];
+}
 
 const productScheam = new Schema(
   {
@@ -49,7 +52,6 @@ const productScheam = new Schema(
         delete ret._id;
         delete ret.__v;
       },
-      strictPopulate: false,
     },
   }
 );

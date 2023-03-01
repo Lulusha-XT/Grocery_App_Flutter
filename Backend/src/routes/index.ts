@@ -1,5 +1,7 @@
 import express, { Router } from "express";
+import cartRoutes from "./api/cart.route";
 import categoryRoutes from "./api/category.api";
+import orderRouter from "./api/order.route";
 import productRoutes from "./api/product.api";
 import relatedProductRoutets from "./api/related-product.routes";
 import sliderRoutes from "./api/slider.rout";
@@ -10,6 +12,8 @@ router.use("/product", productRoutes);
 router.use("/user", userRoutes);
 router.use("/slider", sliderRoutes);
 router.use("/relatedProducts", relatedProductRoutets);
+router.use("/cart", cartRoutes);
+router.use("/order", orderRouter);
 // router.get("/category", (req, res) => {
 //   res.send("CAtegory WORKING !!");
 // });

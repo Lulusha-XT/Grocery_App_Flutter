@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:grocery_app/pages/home_page.dart';
 
+import 'cart_page.dart';
+
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
 
@@ -11,7 +13,7 @@ class DashboardPage extends StatefulWidget {
 class _DashboardPageState extends State<DashboardPage> {
   final List<Widget> widgetList = const [
     HomePage(),
-    HomePage(),
+    CartPage(),
     HomePage(),
     HomePage(),
   ];

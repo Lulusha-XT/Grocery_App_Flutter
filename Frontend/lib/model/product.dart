@@ -13,16 +13,16 @@ abstract class Product with _$Product {
   factory Product({
     required String product_name,
     required Category category,
-    required String product_short_description,
-    required String product_description,
+    required String? product_short_description,
+    required String? product_description,
     required double product_price,
     required double product_sale_price,
     required String product_image,
-    required String product_SKU,
-    required String product_type,
-    required String stack_status,
+    required String? product_SKU,
+    required String? product_type,
+    required String? stack_status,
     required String product_id,
-    List<String>? product_ids,
+    List<String>? relatedProduct,
   }) = _Product;
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);

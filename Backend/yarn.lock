@@ -959,6 +959,11 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-18.13.0.tgz"
   integrity sha512-gC3TazRzGoOnoKAhUx+Q0t8S9Tzs74z7m0ipwGpSqQrleP14hKxP4/JUeEQcD3W1/aIpnWl8pHowI7WokuZpXg==
 
+"@types/node@>=8.1.0":
+  version "18.14.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.2.tgz#c076ed1d7b6095078ad3cf21dfeea951842778b1"
+  integrity sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==
+
 "@types/qs@*":
   version "6.9.7"
   resolved "https://registry.npmjs.org/@types/qs/-/qs-6.9.7.tgz"
@@ -1100,6 +1105,11 @@ array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/array-flatten/-/array-flatten-1.1.1.tgz"
   integrity sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==
+
+async@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.4.tgz#2d22e00f8cddeb5fde5dd33522b56d1cf569a81c"
+  integrity sha512-iAB+JbDEGXhyIUavoDl9WP/Jj106Kz9DEn1DPgYw5ruDn0e3Wgi3sKFm55sASdGBNOQB8F59d9qQ7deqrHA8wQ==
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -2498,7 +2508,7 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.0.tgz"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
 
-qs@6.11.0:
+qs@6.11.0, qs@^6.11.0:
   version "6.11.0"
   resolved "https://registry.npmjs.org/qs/-/qs-6.11.0.tgz"
   integrity sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==
@@ -2792,6 +2802,14 @@ strip-json-comments@^3.1.0, strip-json-comments@^3.1.1:
   version "3.1.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-3.1.1.tgz"
   integrity sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==
+
+stripe@^11.12.0:
+  version "11.12.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-11.12.0.tgz#2d7d4c37a6447a972128b1266e027693241704e3"
+  integrity sha512-7yzFyVV/eYpYalfjnw1f9sh/N3r5QVdx5MFtmpOg2QikKVAW4AptXC8P0wj1KNCd/LIo23nTDo0+m9788jHswg==
+  dependencies:
+    "@types/node" ">=8.1.0"
+    qs "^6.11.0"
 
 strnum@^1.0.5:
   version "1.0.5"

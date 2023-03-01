@@ -11,6 +11,7 @@ const createUser = async (req: Request, res: Response, next: Function) => {
       full_name: req.body.full_name,
       email: req.body.email,
       password: req.body.password,
+      stripeCustomerID: "",
     };
 
     const newUser = await userService.creatUser(user);

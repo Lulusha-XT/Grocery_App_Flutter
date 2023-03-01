@@ -13,19 +13,9 @@ import { FilterQuery } from "mongoose";
 export const getAllCategories = async (
   params: any
 ): Promise<ICategoryType[]> => {
-  // try {
-  //   const categories = await Category.find().lean();
-  //   return categories;
-  // }
   try {
     const category_name = params.category_name;
-    const category_id = params.category_id;
     let condition: FilterQuery<any> = {};
-
-    // if (category_id) {
-    //   condition["category_id"] = category_id;
-    // }
-    condition = category_id ? category_id : {};
     condition = category_name
       ? {
           category_name: { $regex: new RegExp(category_name), $options: "i" },
@@ -50,7 +40,7 @@ export const getAllCategories = async (
 
 export const getCategoryById = async (id: string): Promise<ICategoryType> => {
   try {
-    const category = await Category.findById(id).lean();
+    const category = await Category.findById(id);
     if (!category) throw "Not Found Category With id" + id;
     else return category;
   } catch (err: any) {

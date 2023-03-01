@@ -63,7 +63,8 @@ export const login = async (email: string, password: string) => {
       ))
     ) {
       const token = auth.generateAccessToken(user);
-      return user;
+      user.token = token;
+      return user as IUserDocument;
     }
     // console.log(passwordMatch);
     return null;

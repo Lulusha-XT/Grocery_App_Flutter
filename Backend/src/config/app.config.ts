@@ -6,4 +6,9 @@ const MONGO_DB_CONFIG = {
   TOKEN_SECRET: 2119,
 };
 
+const STRIPE_CONFIG = {
+  STRIPE_KEY: "sk_test",
+  CURRENCY: "birr",
+};
+
 export default MONGO_DB_CONFIG;

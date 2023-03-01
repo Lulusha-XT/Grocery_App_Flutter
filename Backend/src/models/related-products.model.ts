@@ -1,8 +1,8 @@
 import mongoose, { Model, Schema } from "mongoose";
 
 interface IRelatedProduct {
-  product: string;
-  relatedProduct: string;
+  product: mongoose.Schema.Types.ObjectId;
+  relatedProduct: mongoose.Schema.Types.ObjectId;
 }
 
 interface RelatedProductDocument extends IRelatedProduct, Document {}

@@ -1,5 +1,4 @@
-import mongoose, { model, Schema, Document, Model } from "mongoose";
-import { ProductDocument } from "./product.model";
+import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface ICategoryType {
   category_name: string;
@@ -22,7 +21,6 @@ const categorySchema = new Schema(
         delete ret._id;
         delete ret.__v;
       },
-      strictPopulate: false,
     },
   }
 );
